@@ -1,0 +1,223 @@
+﻿<UserControl x:Class="NewBess.BessTestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewBess"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="Converter" />
+
+        <DataTemplate DataType="{x:Type local:PoseCalibrationViewModel}" x:Name="DT_DCVM">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300" />
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="500" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" FontSize="16" Foreground="Red" Content="{Binding Path=PageTitle}"/>
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label Content="Participant ID"/>
+                    <Label Foreground="Red" Content="{Binding Path=ParticipantID}" />
+                    <Label Content="Group"/>
+                    <Label Foreground="Red" Content="{Binding Path=ExperimentalCondition}" />
+                </StackPanel>
+                    
+                <!-- WBB panel -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="2.5*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" FontSize="14" Foreground="Green" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center">WBB data</Label>
+
+                    <!-- Show WBB corner values -->
+                    <GroupBox Grid.Row="1" Grid.Column="0" Header="Weight" HorizontalAlignment="Left" VerticalAlignment="Top"
+                          Height="90" Width="120" Margin="20,0,0,0" >
+                        <Grid Width="120" Height="90">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=KgTopLeft, Mode=OneWay, StringFormat=N1}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=KgTopRight, StringFormat=N1}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False" />
+                            <TextBox Text="{Binding Path=KgBottomLeft, StringFormat=N1}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=KgBottomRight, StringFormat=N1}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=KgTotalWeight, StringFormat=N1}" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" IsEnabled="False"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Grid.Row="1" Grid.Column="1" Header="Raw Signal" HorizontalAlignment="Left" VerticalAlignment="Top"
+                          Height="90" Width="120">
+                        <Grid Width="120" Height="90">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Text="{Binding Path=OWTopLeft, Mode=OneWay, StringFormat=N0}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=OWTopRight, StringFormat=N0}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False" />
+                            <TextBox Text="{Binding Path=OWBottomLeft, StringFormat=N0}" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=OWBottomRight, StringFormat=N0}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" IsEnabled="False"/>
+                            <TextBox Text="{Binding Path=OWTotalWeight, StringFormat=N1}" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" IsEnabled="False"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <Grid Grid.Row="2" Grid.Column="0" Background="CornflowerBlue" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Black" FontWeight="DemiBold">X</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="DemiBold">CoG</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1"  FontWeight="DemiBold" Text="{Binding Path=CoGX, StringFormat=N1}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="DemiBold">CoP</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="DemiBold" Text="{Binding Path=CalculatedCoPX, StringFormat=N1}" HorizontalAlignment="Center" />
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="1" Background="LightGreen" Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Black" FontWeight="DemiBold">Y</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="DemiBold">CoG</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1"  FontWeight="DemiBold" Text="{Binding Path=CoGY, StringFormat=N1}" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="DemiBold">CoP</TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="DemiBold" Text="{Binding Path=CalculatedCoPY, StringFormat=N1}" HorizontalAlignment="Center"  />
+                    </Grid>
+
+                    <Image Grid.Row="3" Grid.ColumnSpan="2"  Source="{Binding Path=Picture}"/>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="9.4*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="Blue" FontWeight="DemiBold">CoP Behaivour on WBB</TextBlock>
+                    <Viewbox x:Name="WBBViewbox" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Image Margin="10,10,10,10" Source="{Binding WBB_Image}" Width="440" Height="260"/>
+                    </Viewbox>
+
+                    <StackPanel Grid.Row="2" Background="Green" Margin="0,10,10,10" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                        <TextBlock Foreground="White" FontWeight="DemiBold">Weight (Kg)</TextBlock>
+                        <TextBlock Foreground="White" FontWeight="DemiBold"  Text="{Binding Path=ZeroCalWeight, StringFormat=N1}" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+
+                <!-- Show Kinect skeleton -->
+                <Viewbox x:Name="kinectBodyViewbox" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left">
+                    <Image Margin="10,10,10,10" Source="{Binding ImageSource}" />
+                </Viewbox>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <!-- Start receiving WBB signal -->
+                    <Button Name="btConnectWBB" Content="Connect WBB" Width="90" Command="{Binding ConnectWBBCommand}"  
+                            Visibility="{Binding Path=ButtonVisibility, Converter={StaticResource Converter}}"
+                            Margin="20,0,20,10" />
+
+                    <Button Name="btZeroCalibration" Content="Zero Calibration" Width="90" Command="{Binding ZeroCalCommand}"  
+                            Visibility="{Binding Path=ButtonVisibility, Converter={StaticResource Converter}}"
+                            Margin="20,0,20,10" />
+
+                    <!-- Gets the position values of reference position -->
+                    <Button Content="Pose Calibration" Width="100"  Command="{Binding StartPoseCalibrationCommand}" Margin="20,0,20,10" />
+
+                    <!-- Gets posture sway and executes test -->
+                    <Button Content="Start Test" Width="90" Command="{Binding StartTestCommand}" HorizontalAlignment="Left" Margin="20,0,20,10" />
+
+                    <!-- Store results -->
+                    <Button Content="Save" Width="90" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="20,0,20,10" />
+                    
+                    <!-- Go to next position -->
+                    <Button Name="btNext" Content="Next" Width="90" HorizontalAlignment="Left" Margin="20,0,20,10" Click="btNext_Click"/>
+
+                    <!-- Return to previous page -->
+                    <Button Content="Close" Width="90" Command="{Binding CancelCommand}" Margin="20,0,20,10" />
+                </StackPanel>
+
+                <TextBlock Foreground="OrangeRed" FontWeight="Heavy" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"  Text="{Binding Path=StatusText}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Path=TestTime}" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="16"/>
+
+                <Grid Grid.Row="4" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="250"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Test feedback:  Time (ms) - Left Foot" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Right Foot" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Left Hand" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content="Right Hand" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="Trunk" HorizontalAlignment="Center"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0"  Text="{Binding Path=LeftFoot}" MaxWidth="300" Margin="10,0,0,0" HorizontalAlignment="Left" Foreground="Blue" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=RightFoot}" MaxWidth="260" HorizontalAlignment="Center" Foreground="Black" />
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=LeftHand}" MaxWidth="260" HorizontalAlignment="Center" Foreground="Blue" />
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Path=RightHand}"  MaxWidth="260" HorizontalAlignment="Center" Foreground="Black"/>
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="{Binding Path=TrunkSway}" MaxWidth="260"  HorizontalAlignment="Center" FontSize="20"  Foreground="Blue" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <ContentControl Content="{Binding}" />
+    </Grid>
+</UserControl>

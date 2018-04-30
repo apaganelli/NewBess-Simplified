@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="NewBess.ReviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewBess"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+
+        <DataTemplate DataType="{x:Type local:ReviewViewModel}">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="0.75*" />
+                    <RowDefinition Height="0.75*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Load Participant Test Data" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Text="CoM and CoP filename" HorizontalAlignment="Center"/>
+                    <Button Content="Get"  Width="90" Margin="10" Command="{Binding GetCPCM_File}" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=CPCM_Filename}" Foreground="Blue" VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Text="Joints filename" HorizontalAlignment="Center"/>
+                    <Button Content="Get"  Width="90" Margin="10" Command="{Binding GetJoints_File}" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Joints_Filename}" Foreground="Blue" VerticalAlignment="Center"/>
+
+                <Grid Grid.Row="3" Grid.Column="0" Background="Blue" Margin="10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label FontWeight="DemiBold" Grid.Row="0" Grid.Column="0">Center of Gravity - X (M-L)</Label>
+                    <TextBlock FontWeight="DemiBold" Text="{Binding Path=CoGX, StringFormat=N2}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                    <Label FontWeight="DemiBold" Grid.Row="1" Grid.Column="0" >CoP X (M-L) on WBB</Label>
+                    <TextBlock FontWeight="DemiBold" Text="{Binding Path=CalculatedCoPX, StringFormat=N2}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+
+                <Grid Grid.Row="4" Grid.Column="0" Background="LightGreen" Margin="10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label FontWeight="DemiBold" Grid.Row="0" Grid.Column="0">Center of Gravity - Z (A-P)</Label>
+                    <TextBlock FontWeight="DemiBold" Grid.Row="0" Grid.Column="1" Text="{Binding Path=CoGZ, StringFormat=N2}" HorizontalAlignment="Center"/>
+
+                    <Label FontWeight="DemiBold" Grid.Row="1" Grid.Column="0" >CoP Y (A-P) on WBB</Label>
+                    <TextBlock FontWeight="DemiBold" Text="{Binding Path=CalculatedCoPY, StringFormat=N2}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+
+                    <Label FontWeight="DemiBold" Grid.Row="2" Grid.Column="0" >Test result</Label>
+                    <TextBlock FontWeight="DemiBold" Text="{Binding Path=TestResult}" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+
+                <Viewbox Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center">
+                    <Image Margin="5,5,5,5" Source="{Binding ImageSource}" HorizontalAlignment="Center"/>
+                </Viewbox>
+
+                <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Play" Width="90" Command="{Binding Play}" Margin="10"/>
+                    <Button Content="Results" Width="90" Command="{Binding ResultsCommand}" Margin="10"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=StatusText}" Foreground="Red" Margin="10,5"/>
+            </Grid>
+
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <ContentControl Content="{Binding}" />
+    </Grid>
+
+</UserControl>

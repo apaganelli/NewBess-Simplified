@@ -13,5 +13,15 @@ namespace NewBess
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            ApplicationView app = new ApplicationView();
+            ApplicationViewModel _appContext = new ApplicationViewModel();
+            app.DataContext = _appContext;
+            app.Show();
+        }
     }
 }
+

@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="NewBess.TestsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NewBess"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:TestsViewModel}">
+            <Grid Background="CornflowerBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="250" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <Label HorizontalAlignment="Center" FontSize="14" Foreground="Red">1. Double Leg Position</Label>
+                    <Label />
+                    <Image Height="350" Width="200" Source="C:\Users\anton\source\repos\NewBess\NewBess\bin\x64\Debug\DoubleStance-BESS.jpg" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="2">
+                    <Label HorizontalAlignment="Center" FontSize="14" Foreground="Red">2. Single Leg Stance</Label>
+                    <Label />
+                    <Image Height="350" Width="200" Source="C:\Users\anton\source\repos\NewBess\NewBess\bin\x64\Debug\SingleStance-BESS.jpg" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="3">
+                    <Label HorizontalAlignment="Center" FontSize="14" Foreground="Red">3. Tandem Leg Stance</Label>
+                    <Label />
+                    <Image Height="350" Width="200" Source="C:\Users\anton\source\repos\NewBess\NewBess\bin\x64\Debug\TandemStance-BESS.jpg" />
+                </StackPanel>
+
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="10,10">
+                    <StackPanel Grid.Row="0" Margin="20,30,0,0">
+                        <Label FontSize="12">Check if the blue led behind the Wii Balance Board is ON.</Label>
+                        <Label>This is a 3 stage test. You are going stay in each position for 20 seconds</Label>
+                        <Label>The first position is the Double Leg Stance and son on.</Label>
+                        <Label FontSize="12">After pressing Continue button, you should press Connect WBB button to start collecting data.</Label>
+                        <Label FontSize="12">Wait few seconds for automatic calibration finishing and step on the platform.</Label>
+                        <Label FontSize="12">Make sure all body segments are being captured by Kinect.</Label>
+                        <Label FontSize="12">Move your arms and legs slowly until you see them in rigid lines on the screen.</Label>
+                        <Label FontSize="12">If necessary, adjust the distance of the Kinect camera from the platform.</Label>
+                        <Label FontSize="12">Test participant eyes status, asking her/him to close and open them.</Label>
+                        <Label FontSize="12">When ready, record the calibration data. If anything goes wrong, repeat the calibration.</Label>
+                        <Label FontSize="12">Finally, Start the test.</Label>
+                        <Label>After the test, save the data and if wished see the preliminary results.</Label>
+                        <Label FontSize="14" Foreground="Red" HorizontalAlignment="Center">Instructions for the participant</Label>
+                        <Label FontSize="12" Foreground="White" FontWeight="DemiBold">Keep standstill in the test position for 20 seconds.</Label>
+                        <Label FontSize="12" Foreground="White" FontWeight="DemiBold">During all the test keep your eyes closed and your hands in your hips.</Label>
+                        <Label FontSize="12" Foreground="White" FontWeight="DemiBold">You will be instructed to start, stop and move to the next position when necessary.</Label>
+                        <Label FontSize="12" Foreground="White" FontWeight="DemiBold">Then, follow to the next test position, Single Leg Stance with your non-dominant leg</Label>
+                        <Label FontSize="12" Foreground="White" FontWeight="DemiBold">Finally, go to the Tandem Leg Stance with your non-dominant leg behind.</Label>
+                        <Label FontSize="12">The pictures on the right demonstrates the correct test position.</Label>
+                    </StackPanel>
+                </Grid>
+
+                <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom">Participant Id</Label>
+                <Label Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" Content="{Binding Path=ParticipantID}"  />
+                
+                <Label Grid.Row="2" Grid.Column="1">Experimental group</Label>
+                <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Path=Group, Mode=TwoWay}" Width="30" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+
+                <StackPanel Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Button Content="Continue" Height="40" Width="80" Command="{Binding ContinueCommand}"  HorizontalAlignment="Left" Margin="10,0,10,0"/>
+                    <TextBlock FontSize="14" Foreground="Red" Text="{Binding Path=StatusText}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        
+    </UserControl.Resources>
+
+    <Grid>
+        <ContentControl Content="{Binding}" />
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,225 @@
+﻿<UserControl x:Class="NewBess.ResultsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:NewBess"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type local:ResultsViewModel}">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2.5*" />
+                    <RowDefinition Height="0.25*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.9*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="3" Content="Center of Pressure" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="14" Foreground="Blue" FontWeight="Bold"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Total Path Length (mm)" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=TotalPathLength, StringFormat={}{0:N1}}" />
+                                        
+                    <Label Grid.Row="2" Grid.Column="0" Content="Mean / Peak Velocity (m/s)" />
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=AvgVelocity, StringFormat={}{0:N3}}" Margin="0,0,30,0" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=PeakVelocity, StringFormat={}{0:N3}}" />
+                    </StackPanel>
+                    
+                    <Label Grid.Row="3" Grid.Column="1" Content="Amplitude" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="2" Content="Min" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="3" Content="Max" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="4" Content="Mean" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="5" Content="Std.Dev." HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="6" Content="RMS" HorizontalAlignment="Left"/>
+                    
+                    <Label Grid.Row="4" Grid.Column="0" Content="Values A-P (y)" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=AmplitudeCoP_Y, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=MinCoP_Y, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Path=MaxCoP_Y, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="{Binding Path=MeanCoPY, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="5" Text="{Binding Path=StdDevCoPY, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="6" Text="{Binding Path=RMSCoP_Y, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    
+                    <Label Grid.Row="5" Grid.Column="0" Content="Values M-L (x)" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Path=AmplitudeCoP_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=MinCoP_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding Path=MaxCoP_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="4" Text="{Binding Path=MeanCoPX, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="5" Text="{Binding Path=StdDevCoPX, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="6" Text="{Binding Path=RMSCoP_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                </Grid>
+                                
+                <!-- Graphs -->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="9*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="9*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Center" Content="Stato-Kinesiogram" FontSize="14" Foreground="Blue" />
+
+                    <lvc:CartesianChart Grid.Row="1" LegendLocation="None" Background="White">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ScatterSeries Values="{Binding CoP}" StrokeThickness=".3" PointGeometry="{x:Static lvc:DefaultGeometries.Circle}" />
+                        </lvc:CartesianChart.Series>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="CoP (ML)" Unit="1"/>
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="CoP (AP)" Unit="1"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <Label Grid.Row="2" HorizontalAlignment="Center" Content="Stabilogram" FontSize="14" Foreground="Blue" />
+
+                    <lvc:CartesianChart Grid.Row="3" LegendLocation="Bottom" Background="White">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ScatterSeries Values="{Binding CoP_Y}" Title="CoP A-P" StrokeThickness="0.5" />
+                            <lvc:ScatterSeries Values="{Binding CoP_X}" Title="CoP M-L" StrokeThickness="0.5"/>
+                        </lvc:CartesianChart.Series>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Time" Unit="1000" MinValue="0" MaxValue="20000" />
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Amplitude"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+                                
+                <!-- CoG side-->
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="3" Content="Center of Mass" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="14" Foreground="Green" FontWeight="Bold"/>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Total Path Length (mm)" />
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=TotalPathLengthCoG, StringFormat={}{0:N1}}" />
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Mean / Peak Velocity (m/s)" />
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=AvgVelocityCoG, StringFormat={}{0:N3}}" Margin="0,0,30,0"/>
+                        <TextBlock Text="{Binding Path=PeakVelocityCoG, StringFormat={}{0:N3}}" />
+                    </StackPanel>
+
+                    <Label Grid.Row="3" Grid.Column="1" Content="Amplitude" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="2" Content="Min" HorizontalAlignment="Left"/>
+                    <Label Grid.Row="3" Grid.Column="3" Content="Max" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Values A-P (z)" />
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=AmplitudeCoG_Z, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding Path=MinCoG_Z, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="4" Grid.Column="3" Text="{Binding Path=MaxCoG_Z, Mode=OneWay, StringFormat={}{0:N1}}" />
+
+                    <Label Grid.Row="5" Grid.Column="0" Content="Values M-L (x)" />
+                    <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Path=AmplitudeCoG_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding Path=MinCoG_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                    <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding Path=MaxCoG_X, Mode=OneWay, StringFormat={}{0:N1}}" />
+                </Grid>
+
+                <!-- Graphs -->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="9*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="9*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" HorizontalAlignment="Center" Content="Stato-Kinesiogram" FontSize="14" Foreground="Green" />
+
+                    <lvc:CartesianChart Grid.Row="1" LegendLocation="None" Background="White">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ScatterSeries Values="{Binding CoG}" />
+                        </lvc:CartesianChart.Series>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="CoG (ML)"  />
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="CoG (AP)" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <Label Grid.Row="2" HorizontalAlignment="Center" Content="Stabilogram" FontSize="14" Foreground="Green" />
+
+                    <lvc:CartesianChart Grid.Row="3" LegendLocation="Bottom" Background="White">
+                        <lvc:CartesianChart.Series>
+                            <lvc:ScatterSeries Values="{Binding CoG_Z}" Title="CoM A-P" />
+                            <lvc:ScatterSeries Values="{Binding CoG_X}" Title="CoM M-L"/>
+                        </lvc:CartesianChart.Series>
+
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title="Time" Unit="1000" MinValue="0" MaxValue="20000" />
+                        </lvc:CartesianChart.AxisX>
+
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Amplitude" />
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                </Grid>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBox Text="{Binding Path=CutOff, Mode=TwoWay}" Width="30" />
+                    <Button Content="Filter" Width="90" Command="{Binding FilterCommand}" Margin="20,0,20,10" />
+                    <Button Content="Go Back" Width="90" Command="{Binding BackCommand}" Margin="20,0,20,10" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+        
+    <Grid>
+        <ContentControl Content="{Binding}" />
+    </Grid>
+</UserControl>
