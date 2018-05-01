@@ -26,7 +26,7 @@ namespace NewBess
         readonly float HandWeightRatio = 0.007f;
         readonly float ThighWeightRatio = 0.103f;
         readonly float CalfWeightRatio = 0.043f;
-        readonly float FootWeightRatio = 0.015f;
+        readonly float FootWeightRatio = 0.015f; 
 
         JointType[] ListProx = {
             JointType.Head,

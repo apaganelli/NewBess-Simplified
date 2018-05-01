@@ -21,7 +21,7 @@ namespace NewBess
                 j1.Y >= j2.Y - margin && j1.Y <= j2.Y + margin &&
                 j1.Z >= j2.Z - margin && j1.Z <= j2.Z + margin;
         }
-
+         
         public static bool CompareJointsEuclideanToDistance(double distance, CameraSpacePoint j1, CameraSpacePoint j2)
         {
             return Math.Sqrt(Math.Pow(j1.X - j2.X,2) + Math.Pow(j1.Y - j2.Y, 2) + Math.Pow(j1.Z - j2.Z, 2)) <= distance;

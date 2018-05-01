@@ -21,7 +21,7 @@ namespace NewBess
 
         int _sessionId;
         int _selectedId = 0;
-        string _status;
+        string _status; 
 
         public ParticipantsViewModel(ApplicationViewModel app)
         {

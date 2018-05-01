@@ -19,7 +19,7 @@ namespace NewBess
 
             ApplicationView app = new ApplicationView();
             ApplicationViewModel _appContext = new ApplicationViewModel();
-            app.DataContext = _appContext;
+            app.DataContext = _appContext; 
             app.Show();
         }
     }

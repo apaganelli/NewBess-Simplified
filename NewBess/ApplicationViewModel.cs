@@ -11,7 +11,7 @@ namespace NewBess
 
         private IPageViewModel _previousPageViewModel;
         private IPageViewModel _currentPageViewModel;
-        private List<IPageViewModel> _pageViewModels;
+        private List<IPageViewModel> _pageViewModels; 
 
         #region Global variables
 

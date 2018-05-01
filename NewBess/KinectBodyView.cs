@@ -745,7 +745,7 @@ namespace NewBess
                 joint0.TrackingState == TrackingState.NotTracked ||
                 joint1.TrackingState == TrackingState.NotTracked))
             {
-                return;
+                return;   
             }
 
             // We assume all drawn bones are inferred unless BOTH joints are tracked

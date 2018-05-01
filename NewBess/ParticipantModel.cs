@@ -11,7 +11,7 @@ namespace NewBess
         int _participantId;
         string _name;
         string _date;
-        string _altitude;
+        string _altitude; 
         int _serie;
 
 

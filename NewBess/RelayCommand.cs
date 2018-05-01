@@ -44,5 +44,5 @@ namespace NewBess
             _execute(parameters);
         }
         #endregion //ICommand Members
-    }
+    } 
 }

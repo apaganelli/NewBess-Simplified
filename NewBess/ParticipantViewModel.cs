@@ -20,7 +20,7 @@ namespace NewBess
 
         IPageViewModel _previousPage;
 
-        ICommand _saveCommand;
+        ICommand _saveCommand; 
         ICommand _cancelCommand;
 
         XmlDocument _xmlDoc = null;

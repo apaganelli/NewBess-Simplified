@@ -9,7 +9,7 @@ namespace NewBess
         double[,] dist;
         double[,] cost;
 
-        public double minCost { get; set; }
+        public double minCost { get; set; } 
         public int stepsH { get; set; }
         public int stepsV { get; set; }
         public int stepsD { get; set; }

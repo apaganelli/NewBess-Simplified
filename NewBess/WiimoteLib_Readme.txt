@@ -28,7 +28,7 @@ v1.7.0.0
 	o MSRS project updated to Microsoft Robotics Developer Studio 2008
 
 v1.6.0.0
---------
+-------- 
 	o Added "center of gravity" calculation to the Wii Fit Balance Board
 	  (thanks to Steven Battersby)
 	o Structs are now marked [Serializable] (suggested by Caio)

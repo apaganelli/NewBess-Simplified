@@ -16,7 +16,7 @@ namespace NewBess
 
         List<DataLog> _listCoP;
         List<DataLog> _listCoM;
-
+         
         private ICommand _backCommand;
         private ICommand _filterCommand;
 

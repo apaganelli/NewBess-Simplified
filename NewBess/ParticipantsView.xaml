@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              Background="DodgerBlue"
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded"> 
     <UserControl.Resources>
         <XmlDataProvider x:Key="Participants" x:Name="ParticipantsInventory" Source="C:\Users\anton\source\repos\NewBess\NewBess\bin\x64\Debug\Participants.xml" XPath="Participants/Participant" />
 

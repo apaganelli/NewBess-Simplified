@@ -8,7 +8,7 @@
         WindowState="Maximized"
         Title="New BESS">
 
-    <Window.Resources>
+    <Window.Resources> 
         <DataTemplate DataType="{x:Type local:ConfigurationViewModel}">
             <local:ConfigurationView />
         </DataTemplate>

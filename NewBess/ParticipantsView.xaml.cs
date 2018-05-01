@@ -49,6 +49,7 @@ namespace NewBess
             }
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ParticipantsViewModel participant = (ParticipantsViewModel)this.DataContext;

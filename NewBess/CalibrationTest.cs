@@ -16,7 +16,7 @@ namespace NewBess
         protected Wiimote wiiDevice = new Wiimote();
 
         protected ApplicationViewModel _app;
-        protected KinectBodyView _kinectBV;
+        protected KinectBodyView _kinectBV; 
 
         protected string _logFilename;
 
@@ -93,7 +93,7 @@ namespace NewBess
         /// </summary>
         public CalibrationTest()
         {
-            LogCalLines = new List<string>();
+            LogCalLines = new List<string>(); 
             LogTestLines = new List<string>();
             LogCalZeroLines = new List<string>();
             LogJoints3D = new List<string>();

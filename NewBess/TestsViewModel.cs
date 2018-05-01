@@ -23,7 +23,7 @@ namespace NewBess
         private string _pageName;
         public string Name
         {
-            get { return _pageName; }
+            get { return _pageName; } 
             set
             {
                 if (value != _pageName)

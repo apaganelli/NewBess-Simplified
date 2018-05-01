@@ -11,7 +11,7 @@ namespace NewBess
         public double elapsedTime { get; set; }
         public float CX { get; set; }
         public float CY { get; set; }
-        public float CZ { get; set; }
+        public float CZ { get; set; } 
 
         public DataLog(double time, float x, float y, float z)
         {

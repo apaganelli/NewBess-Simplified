@@ -26,7 +26,7 @@ namespace NewBess
             {
                 if (value != _pageName)
                 {
-                    _pageName = value;
+                    _pageName = value; 
                 }
             }
 

@@ -33,7 +33,7 @@ namespace NewBess
                     StatusText = "Finished timer for recording stance pose";
                 } else
                 {
-                    StatusText = "Start timer for recording stance pose " + CalibrationElapsedSeconds;
+                    StatusText = "Start timer for recording stance pose " + CalibrationElapsedSeconds; 
                 }
             }
 

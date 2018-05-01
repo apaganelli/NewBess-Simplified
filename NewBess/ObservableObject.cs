@@ -15,7 +15,7 @@ namespace NewBess
             if (this.PropertyChanged != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);
-                this.PropertyChanged(this, e);
+                this.PropertyChanged(this, e); 
             }
         }
     }

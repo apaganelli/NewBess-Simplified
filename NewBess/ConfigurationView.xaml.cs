@@ -14,7 +14,7 @@ namespace NewBess
     /// </summary>
     /// 
     public static class ExtensionMethods
-    {
+    { 
         private static Action EmptyDelegate = delegate () { };
 
 

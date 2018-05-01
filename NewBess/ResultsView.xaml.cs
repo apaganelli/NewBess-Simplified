@@ -20,7 +20,7 @@ namespace NewBess
     /// </summary>
     public partial class ResultsView : UserControl
     {
-        public ResultsView()
+        public ResultsView() 
         {
             InitializeComponent();
         }

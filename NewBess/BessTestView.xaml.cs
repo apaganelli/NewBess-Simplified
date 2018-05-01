@@ -20,7 +20,7 @@ namespace NewBess
             dc.StatusText = "";
         }
 
-        private void btNext_Click(object sender, RoutedEventArgs e)
+        private void btNext_Click(object sender, RoutedEventArgs e) 
         {
             PoseCalibrationViewModel dc = (PoseCalibrationViewModel)this.DataContext;
 
